@@ -6,13 +6,13 @@ const PgSimplifyInflectorPlugin = require("@graphile-contrib/pg-simplify-inflect
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'http://192.168.100.132:3000',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
 app.use(
     cors(corsOptions),
-    postgraphile("postgresql://postgres:okedeh@localhost:5432/test-graphql", "public", {
+    postgraphile("postgresql://midsuit:Andr0m3d1a@206.189.44.112:5432/idempiere", "adempiere", {
         appendPlugins: [PgSimplifyInflectorPlugin],
         classicIds:true,
         graphqlRoute: "/graphql",
@@ -21,6 +21,7 @@ app.use(
         showErrorStack:true,
         extendedErrors :['hint', 'detail', 'errcode'],
         legacyRelations: 'omit',
+        disableDefaultMutations:true,
         graphileBuildOptions: {
             pgOmitListSuffix:true,
             pgShortPk: true,
